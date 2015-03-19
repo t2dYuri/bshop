@@ -1,0 +1,32 @@
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+
+    <%= form_for(@product) do |f| %>
+
+      <% if @product.errors.any? %>
+        <div id="error_explanation">
+          <h3 class="center"><%= pluralize(@product.errors.count, 'error') %> prohibited this product from being saved:</h3>
+          <ul>
+            <% @product.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+
+      <%= f.label :title %>
+      <%= f.text_field :title, class: 'form-control' %>
+
+      <%= f.label :description %>
+      <%= f.text_area :description, class: 'form-control', rows: 6 %>
+
+      <%= f.label :image_url %>
+      <%= f.text_field :image_url, class: 'form-control' %>
+
+      <%= f.label :price %>
+      <%= f.text_field :price, class: 'form-control' %>
+
+      <%= f.submit 'Save', class: 'btn btn-default' %>
+    <% end %>
+  </div>
+</div>
