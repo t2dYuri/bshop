@@ -11,3 +11,12 @@ two:
   description: MyText
   image_url: MyString
   price: 9.99
+
+bike:
+  title: Cannondale Trail 5
+  description:
+    Designed to be the best blend of fast and fun.
+    Lightweight, reliable and affordable.
+    Entry-level bikes with performance that's anything but entry-level.
+  price: 820.50
+  image_url: test01.jpg
