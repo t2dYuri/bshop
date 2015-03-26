@@ -21,7 +21,6 @@ a:link, a:visited {
   }
 }
 
-/* --- Main Elements --- */
 body {
   background: $body-back-color;
   color: $reg-font-color;
@@ -66,36 +65,35 @@ textarea {
   max-width: $max-body-width;
 }
 
-/* --- Controllers --- */
-.products {
-  table {
-    border-collapse: collapse;
-  }
-  table tr td {
-    padding: 5px;
-    vertical-align: top;
-  }
-  .list_image {
-    width:  100px;
-    height: 100px;
-  }
-  .list_description {
-    width: 60%;
-    dl { margin: 0; }
-    dt {
-      font-weight:  bold;
-      font-size:    larger;
+/* --- Buttons --- */
+.btn:focus, .btn:focus:active { outline: none; }
+
+/* --- Navbars --- */
+.navbar-fixed-top {
+  background: $container-back-color;
+
+  .dropdown-menu {
+    background: $body-back-color;
+    a:link, a:visited { color: $reg-font-color; }
+    a:hover, a:focus, a:active {
+      color: $act-font-color;
+      background: none;
     }
-    dd { margin: 0; }
+    .divider { background: $reg-font-color; }
   }
-  .list_actions {
-    text-align:   right;
-    padding-left: 1em;
-  }
-  .list_line_even {
-    background: $element-even-color;
-  }
-  .list_line_odd {
-    background: $element-odd-color;
+}
+
+.pan-container {
+  max-width: $max-body-width;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+
+.nav-but, .nav-but:link, .nav-but:visited {
+//  color: $reg-font-color;
+  border: none;
+  &:hover, &:active, &:focus {
+    color: $act-font-color;
   }
 }

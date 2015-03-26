@@ -1,0 +1,20 @@
+<!--<h2>Your Pragmatic Catalog</h2>-->
+
+<div class="row">
+  <% cache ['store', Product.latest] do %>
+    <% @products.each do |product| %>
+      <div class="col-xs-12 col-sm-6 col-lg-4">
+        <% cache ['entry', product] do %>
+          <div class="entry">
+            <%= image_tag product.image_url, class: 'pull-left' %>
+            <h4 class="center"><%= product.title %></h4>
+            <%= sanitize(product.description.truncate(180)).html_safe %>
+            <div class="last_line">
+              <span class="price"><%= number_to_currency product.price %></span>
+            </div>
+          </div>
+          </div>
+        <% end %>
+    <% end %>
+  <% end %>
+</div>

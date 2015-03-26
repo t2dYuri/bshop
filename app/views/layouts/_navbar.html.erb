@@ -1,0 +1,27 @@
+<header class="navbar-fixed-top">
+  <div class="pan-container">
+
+    <%= link_to store_path, class: 'btn nav-but' do %>
+      <i class="glyphicon glyphicon-home"></i> Home
+    <% end %>
+
+    <div class="btn-group">
+      <a href="#" class="dropdown-toggle btn nav-but" data-toggle="dropdown">
+        <i class="glyphicon glyphicon-info-sign"></i> Info
+        <b class="caret"></b></a>
+      <ul class="dropdown-menu">
+        <li><%= link_to 'Questions', '#' %></li>
+        <li><%= link_to 'News', '#' %></li>
+        <li><%= link_to 'Contact', '#' %></li>
+      </ul>
+    </div>
+
+    <%= link_to '#', class: 'btn nav-but' do %>
+      <i class="glyphicon glyphicon-user"></i> Log in
+    <% end %>
+    <%= link_to '#', class: 'btn nav-but' do %>
+      <i class="glyphicon glyphicon-star"></i> Register
+    <% end %>
+
+  </div>
+</header>

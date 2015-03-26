@@ -1,1 +1,37 @@
+.products {
 
+  table {border-collapse: collapse;}
+
+  table tr td {
+    padding: 5px;
+    vertical-align: top;
+  }
+
+  .list_image {
+    width: 100px;
+    height: 100px;
+  }
+
+  .list_description {
+    width: 60%;
+    dl {margin: 0;}
+    dt {
+      font-weight: bold;
+      font-size: larger;
+    }
+    dd { margin: 0; }
+  }
+
+  .list_actions {
+    text-align: right;
+    padding-left: 1em;
+  }
+
+  .list_line_even {
+    background: $element-even-color;
+  }
+
+  .list_line_odd {
+    background: $element-odd-color;
+  }
+}
