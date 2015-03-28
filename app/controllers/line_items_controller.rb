@@ -18,7 +18,7 @@ class LineItemsController < ApplicationController
 
   def create
     product = Product.find(params[:product_id])
-    @line_item = current_cart.add_product(product.id)
+    @line_item = current_cart.add_product(product.id, product.price)
 
     respond_to do |format|
       if @line_item.save
