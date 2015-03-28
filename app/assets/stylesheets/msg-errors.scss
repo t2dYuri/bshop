@@ -1,7 +1,11 @@
 $error-text-color: #e29a9f;
+$notice-color: #9ac0a2;
 
 #notice {
-  color: #8cd899;
+  color: $notice-color;
+  text-align: center;
+  font-weight: bold;
+  margin: 10px;
 }
 
 #error_explanation {

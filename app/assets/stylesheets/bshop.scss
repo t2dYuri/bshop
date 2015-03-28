@@ -3,13 +3,23 @@ $max-body-width: 1336px;
 /* --- Colors --- */
 $body-back-color: #1a1a1a;
 $container-back-color: #2F3439;
-$element-even-color: #3D4548;
-$element-odd-color: #313944;
+$element-even-color: #27323c;
+$element-odd-color: #2d3744;
 $input-screen-color: #30626c;
 $reg-font-color: #a2a7a6;
+$dark-font-color: #1a1a1a;
 $act-font-color: #d0d3d2;
-$link-color: #1DBAA6;
+$acc-font-color: #7dcb86;
+$del-font-color: #ea8684;
+$link-color: #14B89A;
 $link-hover: #04AED0;
+
+$nice-green: #518154;
+$pure-green: #235139;
+$nice-blue: #276998;
+$pure-blue: #224c76;
+$nice-red: #a05e5e;
+$pure-red: #512626;
 
 /* --- Links --- */
 a:link, a:visited {
@@ -26,16 +36,9 @@ body {
   color: $reg-font-color;
 }
 
-h1, h2, h3, h4, h5, h6 {
-  line-height: 1;
-}
-
-h1, h2 {
-  text-align: center;
-}
-h2 {
-  margin-top: 15px;
-}
+h1, h2, h3, h4, h5, h6 { line-height: 1; }
+h1, h2 { text-align: center; }
+h2 { margin-top: 15px; }
 
 h4, h5, h6 {
   margin-top: 2px;
@@ -48,17 +51,11 @@ h4, h5, h6 {
   color: $act-font-color;
 }
 
-textarea {
-  resize: vertical;
-}
-
-.center {
-  text-align: center;
-}
+textarea { resize: vertical; }
+.center { text-align: center; }
 
 .container-fluid {
   border-radius: 6px;
-  padding-bottom: 10px;
   margin-top: 50px;
   margin-bottom: 20px;
   background: $container-back-color;
@@ -68,10 +65,61 @@ textarea {
 /* --- Buttons --- */
 .btn:focus, .btn:focus:active { outline: none; }
 
+.btn-main, .btn-main:link, .btn-main:visited {
+  color: $reg-font-color;
+  background: $pure-blue none;
+  border: 1px solid $nice-blue;
+  padding: 4px 8px;
+  text-align: center;
+  vertical-align: middle;
+  border-radius: 4px;
+  display: inline-block;
+  cursor: pointer;
+  box-sizing: border-box;
+  white-space: nowrap;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+//  -webkit-appearance: button;
+//  -moz-appearance: button;
+//  -ms-appearance: button;
+//  appearance: button;
+  &:hover, &:active, &:focus {
+    color: $act-font-color;
+    background: $nice-blue none;
+    border: 1px solid $pure-blue;
+    text-decoration: none;
+  }
+}
+
+.btn-confirm, .btn-confirm:link, .btn-confirm:visited {
+  @extend .btn-main;
+  color: $act-font-color;
+  background: $pure-green none;
+  border: 1px solid $nice-green;
+  &:hover, &:active, &:focus {
+    color: $act-font-color;
+    background: $nice-green none;
+    border: 1px solid $pure-green;
+  }
+}
+
+.btn-delete, .btn-delete:link, .btn-delete:visited {
+  @extend .btn-main;
+  color: $reg-font-color;
+  background: $pure-red none;
+  border: 1px solid $nice-red;
+  &:hover, &:active, &:focus {
+    color: $act-font-color;
+    background: $nice-red none;
+    border: 1px solid $pure-red;
+  }
+}
+
 /* --- Navbars --- */
 .navbar-fixed-top {
   background: $container-back-color;
-
   .dropdown-menu {
     background: $body-back-color;
     a:link, a:visited { color: $reg-font-color; }
@@ -91,9 +139,6 @@ textarea {
 }
 
 .nav-but, .nav-but:link, .nav-but:visited {
-//  color: $reg-font-color;
   border: none;
-  &:hover, &:active, &:focus {
-    color: $act-font-color;
-  }
+  &:hover, &:active, &:focus { color: $act-font-color; }
 }
