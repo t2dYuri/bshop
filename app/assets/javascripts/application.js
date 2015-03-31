@@ -11,8 +11,10 @@
 // about supported directives.
 //
 //= require jquery
+//= require jquery-ui/effect-blind
 //= require jquery_ujs
 //= require jquery.turbolinks
 //= require bootstrap
+//= require toastr
 //= require turbolinks
 //= require_tree .

@@ -1,5 +1,4 @@
 class LineItemsController < ApplicationController
-  before_action :current_cart, only: [:create]
   before_action :set_line_item, only: [:show, :edit, :update, :destroy]
 
   def index
@@ -23,6 +22,7 @@ class LineItemsController < ApplicationController
     respond_to do |format|
       if @line_item.save
         format.html { redirect_to :back }
+        format.js
         format.json { render :show, status: :created, location: @line_item }
       else
         format.html { render :new }
@@ -35,6 +35,7 @@ class LineItemsController < ApplicationController
     respond_to do |format|
       if @line_item.update(line_item_params)
         format.html { redirect_to current_cart }
+        format.js { @current_item = @line_item }
         format.json { render :show, status: :ok, location: @line_item }
       else
         format.html { redirect_to current_cart }
@@ -50,8 +51,10 @@ class LineItemsController < ApplicationController
         current_cart.destroy
         session[:cart_id] = nil
         format.html { redirect_to store_url, notice: 'Your cart is empty' }
+        format.js { flash[:notice] = 'Your cart is empty'; render action: 'destroy_last' }
       else
         format.html { redirect_to current_cart }
+        format.js
       end
     end
   end

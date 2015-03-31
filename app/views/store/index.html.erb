@@ -1,5 +1,3 @@
-<!--<h2>Your Pragmatic Catalog</h2>-->
-
 <div class="row">
   <% cache ['store', Product.latest] do %>
     <% @products.each do |product| %>
@@ -11,13 +9,13 @@
             <%= sanitize(product.description.truncate(180)).html_safe %>
             <div class="last_line">
               <span class="price"><%= number_to_currency product.price %></span>
-              <%= button_to line_items_path(product_id: product), class: 'btn-main' do %>
+              <%= button_to line_items_path(product_id: product), class: 'btn-main', remote: true do %>
                 <i class="glyphicon glyphicon-shopping-cart"></i> Add to Cart
               <% end %>
             </div>
           </div>
-          </div>
         <% end %>
+      </div>
     <% end %>
   <% end %>
 </div>

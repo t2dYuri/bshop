@@ -3,20 +3,38 @@
   <head>
     <%= favicon_link_tag 'favicon.ico' %>
     <title>BESHOP</title>
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
     <%= csrf_meta_tags %>
     <!--<meta name="viewport" content="width=device-width, initial-scale=1">-->
   </head>
   <body>
-  <%= render 'layouts/navbar' %>
-    <div class="container-fluid">
-      <% if notice %>
-        <p id="notice"><%= notice %></p>
-      <% end %>
-      <div class="<%= controller.controller_name %>">
-        <%= yield %>
-      </div>
+
+  <span id="navbar">
+    <%= render 'layouts/navbar' %>
+  </span>
+
+  <span id="cart_modal">
+    <% if session[:cart_id].present? %>
+      <%= render 'layouts/cart_modal' %>
+    <% end %>
+  </span>
+
+  <div class="container-fluid">
+
+    <% unless flash.empty? %>
+      <script type="text/javascript">
+        <% flash.each do |f| %>
+        <% type = f[0].gsub('alert', 'error').gsub('notice', 'info') %>
+        toastr['<%= type %>']('<%= f[1] %>', '<%= type %>');
+        <% end %>
+      </script>
+    <% end %>
+
+    <div class="<%= controller.controller_name %>">
+      <%= yield %>
     </div>
+  </div>
+
   </body>
 </html>

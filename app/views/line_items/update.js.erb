@@ -1,0 +1,5 @@
+$('#current_cart').html("<%= escape_javascript render current_cart %>");
+
+var item = $('#current_item');
+var color = item.css('background-color');
+item.css({'background-color':'#7dcb86'}).animate({'background-color': color}, 1000);

@@ -142,3 +142,48 @@ textarea { resize: vertical; }
   border: none;
   &:hover, &:active, &:focus { color: $act-font-color; }
 }
+
+.modal-content {
+  background: $body-back-color;
+  .modal-body {
+    background: $container-back-color;
+    border-radius: 6px;
+  }
+  .cart-body {
+    overflow: auto;
+    border-radius: 6px;
+    padding: 10px;
+    border: 1px solid $input-screen-color;
+    background: $element-odd-color;
+  }
+  table {
+    width: 100%;
+    td { padding: 5px; }
+  }
+  .cart-line-even { background: $element-even-color; }
+  .cart-line-odd { background: $element-odd-color; }
+  .item-price, .total-line { text-align: right; }
+  .total-line { background: $pure-blue; }
+  .cart-bottom-line {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    form, div {
+      display: inline;
+      margin-left: 10px;
+    }
+  }
+  .del-but {
+    margin-left: 5px;
+    &:hover { color: $del-font-color; }
+  }
+  .qty-field {
+    background: $input-screen-color;
+    color: $act-font-color;
+    border-radius: 4px;
+    border: 1px solid transparent;
+    padding-left: 5px;
+    vertical-align: middle;
+  }
+  .btn-main { top: 0; }
+}
+

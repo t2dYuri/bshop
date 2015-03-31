@@ -29,11 +29,11 @@
     <% end %>
 
     <% if session[:cart_id].present? %>
-      <%= link_to cart_path(session[:cart_id]), class: 'btn nav-but' do %>
-        <i class="glyphicon glyphicon-shopping-cart"></i> My Cart
-        (<%= pluralize LineItem.count, 'item' %>)
+      <span data-toggle="modal" data-target=".cart-mod">
+      <%= link_to '#', class: 'btn nav-but' do %>
+        <i class="glyphicon glyphicon-shopping-cart"></i> My Cart (<%= pluralize LineItem.count, 'item' %>)
       <% end %>
+      </span>
     <% end %>
-
   </div>
 </header>

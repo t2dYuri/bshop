@@ -1,39 +1,43 @@
-<h2>My Cart</h2>
-
-<div class="cart-body">
-  <table>
-    <% @cart.line_items.order(:created_at).each_with_index do |item, i| %>
-      <tr class="<%= cycle('cart-line-even', 'cart-line-odd') %>">
-        <td><%= i+1 %></td>
-        <td><%= item.product.title %></td>
-        <td>
-          <%= form_for item do |f| %>
-            <%= f.number_field :quantity, in: 1...101, class: 'qty-field' %>
-            <%= f.button '', class: 'btn-main glyphicon glyphicon-refresh' %>
-          <% end %>
-        </td>
-        <td class="item-price">
-          <%= number_to_currency(item.total_price) %>
-          <%= link_to '', item, method: :delete,
+<!--<h2>My Cart</h2>-->
+<!--<div class="cart-body">-->
+  <!--<table>-->
+    <%# @cart.line_items.order(:created_at).each_with_index do |item, i| %>
+      <!--<tr class="<%#= cycle('cart-line-even', 'cart-line-odd') %>">-->
+        <!--<td><%#= i+1 %></td>-->
+        <!--<td><%#= item.product.title %></td>-->
+        <!--<td>-->
+          <!--<%#= form_for item do |f| %>-->
+            <!--<%#= f.number_field :quantity, in: 1...101, class: 'qty-field' %>-->
+            <!--<%#= f.button '', class: 'btn-main glyphicon glyphicon-refresh' %>-->
+          <!--<%# end %>-->
+        <!--</td>-->
+        <!--<td class="item-price">-->
+          <!--<%#= number_to_currency(item.total_price) %>-->
+          <%#= link_to '', item, method: :delete,
                       class: 'del-but glyphicon glyphicon-remove-sign' %>
-        </td>
-      </tr>
-    <% end %>
-    <tr class="total-line">
-      <td colspan="4">Total : <%= number_to_currency(@cart.total_price) %></td>
-    </tr>
-  </table>
-</div>
+        <!--</td>-->
+      <!--</tr>-->
+    <%# end %>
 
-<div class="cart-bottom-line">
-  <%= link_to store_path, class: 'btn-main' do %>
-    <i class="glyphicon glyphicon-list-alt"></i> Back to products
-  <% end %>
-  <%= button_to @cart, method: :delete, data: { confirm: 'Are you sure?' },
+    <%#= render @cart.line_items.order(:created_at) %>
+
+    <!--<tr class="total-line">-->
+      <!--<td colspan="3">Total : <%#= number_to_currency(@cart.total_price) %></td>-->
+    <!--</tr>-->
+  <!--</table>-->
+<!--</div>-->
+
+<!--<div class="cart-bottom-line">-->
+  <!--<%#= link_to store_path, class: 'btn-main' do %>-->
+    <!--<i class="glyphicon glyphicon-list-alt"></i> Back to products-->
+  <!--<%# end %>-->
+  <%#= button_to @cart, method: :delete, data: { confirm: 'Are you sure?' },
                 class: 'btn-delete' do %>
-    <i class="glyphicon glyphicon-remove"></i> Empty cart
-  <% end %>
-  <%= button_to '#', class: 'btn-confirm pull-right' do %>
-    <i class="glyphicon glyphicon-ok"></i> Confirm order
-  <% end %>
-</div>
+    <!--<i class="glyphicon glyphicon-remove"></i> Empty cart-->
+  <!--<%# end %>-->
+  <!--<%#= button_to '#', class: 'btn-confirm pull-right' do %>-->
+    <!--<i class="glyphicon glyphicon-ok"></i> Confirm order-->
+  <!--<%# end %>-->
+<!--</div>-->
+
+<%= render current_cart %>
