@@ -1,2 +1,6 @@
 $('#navbar').html("<%= escape_javascript render 'layouts/navbar' %>");
 $('#cart_modal').html("<%= escape_javascript render 'layouts/cart_modal' %>");
+
+var my_cart = $('.nav-my-cart');
+var my_cart_color = my_cart.css('color');
+my_cart.animate({'color':'#ffffff'}, 300).animate({'color': my_cart_color}, 1000);

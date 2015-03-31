@@ -158,7 +158,7 @@
                     },
                     iconClass: 'toast-info',
                     positionClass: 'toast-top-center',
-                    timeOut: 2000, // Set timeOut and extendedTimeOut to 0 to make it sticky
+                    timeOut: 1500, // Set timeOut and extendedTimeOut to 0 to make it sticky
                     titleClass: 'toast-title',
                     messageClass: 'toast-message',
                     target: 'body',

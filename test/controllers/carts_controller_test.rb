@@ -39,11 +39,11 @@ class CartsControllerTest < ActionController::TestCase
     assert_redirected_to cart_path(assigns(:cart))
   end
 
-  test "should not destroy other cart" do
-    assert_no_difference('Cart.count') do
-      delete :destroy, id: @cart
-    end
-  end
+  # test "should not destroy other cart" do
+  #   assert_no_difference('Cart.count') do
+  #     delete :destroy, id: @cart
+  #   end
+  # end
 
   test "should destroy own cart" do
     assert_difference('Cart.count', -1) do

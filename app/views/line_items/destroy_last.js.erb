@@ -1,1 +1,5 @@
-window.location.replace("<%= store_path %>");
+//window.location.replace("<%#= store_path %>");
+
+$('.cart-mod').modal('hide');
+$('#navbar').html("<%= escape_javascript render 'layouts/navbar' %>");
+toastr.info('Your cart is empty');

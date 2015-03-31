@@ -44,11 +44,12 @@ class CartsController < ApplicationController
   end
 
   def destroy
-    @cart.destroy if @cart.id == session[:cart_id]
-    # @cart.destroy
+    # @cart.destroy if @cart.id == session[:cart_id]
+    @cart.destroy
+    # current_cart.destroy
     session[:cart_id] = nil
     respond_to do |format|
-      format.html { redirect_to store_url, notice: 'Your cart is currently empty' }
+      format.html { redirect_to store_url, notice: 'Cart destroyed' }
       format.json { head :no_content }
     end
   end

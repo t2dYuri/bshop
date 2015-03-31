@@ -50,8 +50,8 @@ class LineItemsController < ApplicationController
       if current_cart.line_items.empty?
         current_cart.destroy
         session[:cart_id] = nil
-        format.html { redirect_to store_url, notice: 'Your cart is empty' }
-        format.js { flash[:notice] = 'Your cart is empty'; render action: 'destroy_last' }
+        format.html { redirect_to store_url flash[:info] = 'Your cart is empty' }
+        format.js { render action: 'destroy_last' }
       else
         format.html { redirect_to current_cart }
         format.js
