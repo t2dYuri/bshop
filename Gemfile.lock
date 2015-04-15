@@ -65,9 +65,6 @@ GEM
       activesupport (>= 4.1.0)
     hike (1.2.3)
     i18n (0.7.0)
-    jbuilder (2.2.11)
-      activesupport (>= 3.0.0, < 5)
-      multi_json (~> 1.2)
     jquery-rails (4.0.3)
       rails-dom-testing (~> 1.0)
       railties (>= 4.2.0)
@@ -177,7 +174,6 @@ DEPENDENCIES
   bootstrap-sass
   byebug
   coffee-rails (~> 4.1.0)
-  jbuilder (~> 2.0)
   jquery-rails
   jquery-turbolinks
   jquery-ui-rails

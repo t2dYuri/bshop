@@ -1,0 +1,79 @@
+/* --- Buttons --- */
+.btn:focus, .btn:focus:active { outline: none; }
+.btn-main, .btn-main:link, .btn-main:visited {
+  color: $reg-font-color;
+  background: $pure-blue none;
+  border: 1px solid $nice-blue;
+  padding: 4px 8px;
+  text-align: center;
+  vertical-align: middle;
+  border-radius: 4px;
+  display: inline-block;
+  cursor: pointer;
+  box-sizing: border-box;
+  white-space: nowrap;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  top: 0;
+  &:hover, &:active, &:focus {
+    color: $act-font-color;
+    background: $nice-blue none;
+    border: 1px solid $pure-blue;
+    text-decoration: none;
+  }
+}
+
+.btn-confirm, .btn-confirm:link, .btn-confirm:visited {
+  @extend .btn-main;
+  color: $act-font-color;
+  background: $pure-green none;
+  border: 1px solid $nice-green;
+  &:hover, &:active, &:focus {
+    color: $act-font-color;
+    background: $nice-green none;
+    border: 1px solid $pure-green;
+  }
+}
+
+.btn-delete, .btn-delete:link, .btn-delete:visited {
+  @extend .btn-main;
+  color: $reg-font-color;
+  background: $pure-red none;
+  border: 1px solid $nice-red;
+  &:hover, &:active, &:focus {
+    color: $act-font-color;
+    background: $nice-red none;
+    border: 1px solid $pure-red;
+  }
+}
+
+#control-but {
+  margin: 0 0 0 3px;
+  font-size: larger;
+}
+
+.show-but:link, .show-but:visited {
+  @extend .glyphicon, .glyphicon-eye-open;
+  @extend #control-but;
+  &:hover, &:active, &:focus { color: #04dd3c; }
+}
+.edit-but:link, .edit-but:visited {
+  @extend .glyphicon, .glyphicon-cog;
+  @extend #control-but;
+  color: $nice-yellow;
+  &:hover, &:active, &:focus { color: #ffc700; }
+}
+.del-but:link, .del-but:visited {
+  @extend .glyphicon, .glyphicon-remove;
+  @extend #control-but;
+  color: $nice-red;
+  &:hover, &:active, &:focus { color: #dd0000; }
+}
+
+.back-but:link, .back-but:visited {
+  @extend .glyphicon, .glyphicon-repeat;
+  @extend #control-but;
+  color: $nice-blue;
+}

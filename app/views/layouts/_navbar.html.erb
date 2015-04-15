@@ -17,21 +17,22 @@
       </ul>
     </div>
 
-    <%= link_to '#', class: 'btn nav-but' do %>
-      <i class="glyphicon glyphicon-user"></i> Log in
+    <%= link_to products_path, class: 'btn nav-but' do %>
+      <i class="glyphicon glyphicon-th-list"></i> Products
     <% end %>
-    <%= link_to '#', class: 'btn nav-but' do %>
-      <i class="glyphicon glyphicon-star"></i> Register
+    <%= link_to orders_path, class: 'btn nav-but' do %>
+      <i class="glyphicon glyphicon-list-alt"></i> Orders
     <% end %>
 
     <%= link_to carts_path, class: 'btn nav-but' do %>
-      <i class="glyphicon glyphicon-shopping-cart"></i> All Carts
+      <i class="glyphicon glyphicon-qrcode"></i> All Carts
     <% end %>
 
     <% if session[:cart_id].present? %>
       <span data-toggle="modal" data-target=".cart-mod">
       <%= link_to '#', class: 'btn nav-but nav-my-cart' do %>
-        <i class="glyphicon glyphicon-shopping-cart"></i> My Cart (<%= pluralize LineItem.count, 'item' %>)
+        <i class="glyphicon glyphicon-shopping-cart"></i>
+          &nbsp;My Cart (<%= pluralize current_cart.line_items.count, 'item' %>)
       <% end %>
       </span>
     <% end %>

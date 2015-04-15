@@ -4,8 +4,8 @@
       <div class="col-xs-12 col-sm-6 col-lg-4">
         <% cache ['entry', product] do %>
           <div class="entry">
-            <%= image_tag product.image_url, class: 'pull-left' %>
-            <h4 class="center"><%= product.title %></h4>
+            <%= image_tag product.image_url, class: 'img-list pull-left' %>
+            <div class="heading-text center"><%= product.title %></div>
             <%= sanitize(product.description.truncate(180)).html_safe %>
             <div class="last_line">
               <span class="price"><%= number_to_currency product.price %></span>

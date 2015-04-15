@@ -1,0 +1,49 @@
+<h2>Order ID: <%= @order.id %></h2>
+<hr>
+<div class="row">
+  <div class="col-md-4">
+    <p><strong>Name: </strong><%= @order.name %></p>
+    <p><strong>Email: </strong><%= @order.email %></p>
+    <p><strong>Address: </strong><%= @order.address.html_safe %></p>
+    <p><strong>Pay type: </strong><%= @order.pay_type %></p>
+  </div>
+
+  <div class="col-md-8">
+    <table>
+      <% @order.line_items.order(:created_at).each_with_index do |item, i| %>
+        <tr class="<%= cycle('line-even', 'line-odd') %>">
+          <td><%= i+1 %></td>
+          <td><%= item.product.title %></td>
+          <td>
+            <%= form_for item do |f| %>
+              <%= f.number_field :quantity, in: 1...101, class: 'qty-field' %>
+              <%= f.button '', class: 'btn-main glyphicon glyphicon-refresh',
+                           title: 'Save', 'data-toggle' => 'tooltip', 'data-placement' => 'top' %>
+            <% end %>
+          </td>
+          <td class="item-price"><%= number_to_currency item.total_price %></td>
+          <td class="control-links">
+            <%= link_to '', item.product, class: 'show-but',
+                        title: 'Show product', 'data-toggle' => 'tooltip', 'data-placement' => 'top' %>
+            <%= link_to '', item, method: :delete, data: {confirm: 'You sure?'}, class: 'del-but',
+                        title: 'Delete item', 'data-toggle' => 'tooltip', 'data-placement' => 'top' %>
+          </td>
+        </tr>
+      <% end %>
+      <tr class="table-total-line center">
+        <td colspan="5">Total order price: <%= number_to_currency @order.line_items.map(&:total_price).sum %></td>
+      </tr>
+    </table>
+  </div>
+</div>
+<hr>
+
+<div class="bottom-line center">
+  <%= link_to '', orders_path, class: 'back-but',
+              title: 'Back to orders', 'data-toggle' => 'tooltip', 'data-placement' => 'top' %>
+  <%= link_to '', edit_order_path(@order), class: 'edit-but',
+              title: 'Edit', 'data-toggle' => 'tooltip', 'data-placement' => 'top' %>
+  <%= link_to '', @order, method: :delete, data: {confirm: 'You sure?'}, class: 'del-but',
+              title: 'Delete', 'data-toggle' => 'tooltip', 'data-placement' => 'top' %>
+</div>
+

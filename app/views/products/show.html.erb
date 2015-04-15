@@ -1,24 +1,23 @@
-<p id="notice"><%= notice %></p>
+<h3 class="center"><%= @product.title %></h3>
 
-<p>
-  <strong>Title:</strong>
-  <%= @product.title %>
-</p>
+<div class="entry">
+  <%= image_tag @product.image_url, class: 'pull-left' %>
+  <%= @product.description.html_safe %>
 
-<p>
-  <strong>Description:</strong>
-  <%= @product.description %>
-</p>
+  <div class="last_line">
+    <span class="price"><%= number_to_currency @product.price %></span>
+    <%= button_to line_items_path(product_id: @product), class: 'btn-main', remote: true do %>
+      <i class="glyphicon glyphicon-shopping-cart"></i> Add to Cart
+    <% end %>
+  </div>
 
-<p>
-  <strong>Image url:</strong>
-  <%= @product.image_url %>
-</p>
+</div>
 
-<p>
-  <strong>Price:</strong>
-  <%= @product.price %>
-</p>
-
-<%= link_to 'Edit', edit_product_path(@product) %> |
-<%= link_to 'Back', products_path %>
+<div class="bottom-line center">
+  <%= link_to '', products_path, class: 'back-but',
+              title: 'Back to products', 'data-toggle' => 'tooltip', 'data-placement' => 'top' %>
+  <%= link_to '', edit_product_path(@product), class: 'edit-but',
+              title: 'Edit', 'data-toggle' => 'tooltip', 'data-placement' => 'top' %>
+  <%= link_to '', @product, method: :delete, data: {confirm: 'You sure?'}, class: 'del-but',
+              title: 'Delete', 'data-toggle' => 'tooltip', 'data-placement' => 'top' %>
+</div>

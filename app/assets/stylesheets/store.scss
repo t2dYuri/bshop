@@ -1,39 +1,11 @@
 .store {
   .row { padding: 5px; }
-
   [class^=col] { padding: 5px; }
 
   @media (max-width: $screen-xs-max) { .entry {height: 160px;} }
   @media (min-width: $screen-sm-min) { .entry {height: 180px;} }
 
   .entry {
-    overflow: auto;
-    border-radius: 6px;
-    padding: 10px;
-    border: 1px solid $input-screen-color;
-    background: $element-odd-color;
-
-    img {
-      width: 100px;
-      border-radius: 6px;
-      margin-right: 10px;
-    }
-
-    h4 { color: $act-font-color; }
-
-    p, div.last_line {
-      position: absolute;
-      bottom: 15px;
-
-      .price {
-        color: $link-hover;
-        font-weight: bold;
-      }
-
-      form, div {
-        display: inline;
-        margin-left: 10px;
-      }
-    }
+    .last_line { right: auto; }
   }
 }

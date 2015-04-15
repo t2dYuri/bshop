@@ -1,0 +1,10 @@
+<h2>Editing Order</h2>
+
+<%= render 'form' %>
+
+<div class="bottom-line">
+  <%= link_to '', @order, class: 'show-but',
+              title: 'Show', 'data-toggle' => 'tooltip', 'data-placement' => 'top' %>
+  <%= link_to '', orders_path, class: 'back-but',
+              title: 'Back to orders', 'data-toggle' => 'tooltip', 'data-placement' => 'top' %>
+</div>

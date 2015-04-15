@@ -2,17 +2,7 @@
   <div class="col-md-6 col-md-offset-3">
 
     <%= form_for(@product) do |f| %>
-
-      <% if @product.errors.any? %>
-        <div id="error_explanation">
-          <h3 class="center"><%= pluralize(@product.errors.count, 'error') %> prohibited this product from being saved:</h3>
-          <ul>
-            <% @product.errors.full_messages.each do |message| %>
-              <li><%= message %></li>
-            <% end %>
-          </ul>
-        </div>
-      <% end %>
+      <%= render 'shared/error_messages', object: f.object %>
 
       <%= f.label :title %>
       <%= f.text_field :title, class: 'form-control' %>
@@ -26,7 +16,10 @@
       <%= f.label :price %>
       <%= f.text_field :price, class: 'form-control' %>
 
-      <%= f.submit 'Save', class: 'btn btn-default' %>
+      <%= f.button class: 'btn-main' do %>
+        <i class="glyphicon glyphicon-save"></i> Save product
+      <% end %>
+
     <% end %>
   </div>
 </div>

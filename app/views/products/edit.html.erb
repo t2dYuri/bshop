@@ -1,6 +1,10 @@
-<h1>Editing Product</h1>
+<h2>Editing Product</h2>
 
 <%= render 'form' %>
 
-<%= link_to 'Show', @product %> |
-<%= link_to 'Back', products_path %>
+<div class="bottom-line">
+  <%= link_to '', @product, class: 'show-but',
+              title: 'Show', 'data-toggle' => 'tooltip', 'data-placement' => 'top' %>
+  <%= link_to '', products_path, class: 'back-but',
+              title: 'Back to products', 'data-toggle' => 'tooltip', 'data-placement' => 'top' %>
+</div>

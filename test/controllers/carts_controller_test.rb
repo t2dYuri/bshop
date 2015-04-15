@@ -5,38 +5,23 @@ class CartsControllerTest < ActionController::TestCase
     @cart = carts(:one)
   end
 
-  test "should get index" do
+  test 'should get index' do
     get :index
     assert_response :success
     assert_not_nil assigns(:carts)
   end
 
-  test "should get new" do
-    get :new
-    assert_response :success
-  end
-
-  test "should create cart" do
-    assert_difference('Cart.count') do
-      post :create, cart: {  }
-    end
-
-    assert_redirected_to cart_path(assigns(:cart))
-  end
-
-  test "should show cart" do
+  test 'should show current cart' do
+    set_cart_session
     get :show, id: @cart
     assert_response :success
   end
 
-  test "should get edit" do
-    get :edit, id: @cart
-    assert_response :success
-  end
-
-  test "should update cart" do
-    patch :update, id: @cart, cart: {  }
-    assert_redirected_to cart_path(assigns(:cart))
+  test 'should not show other cart' do
+    session[:cart_id] = carts(:two).id
+    get :show, id: @cart
+    assert_response :redirect
+    assert_not flash.empty?
   end
 
   # test "should not destroy other cart" do
@@ -45,11 +30,12 @@ class CartsControllerTest < ActionController::TestCase
   #   end
   # end
 
-  test "should destroy own cart" do
+  test 'should destroy own cart' do
+    request.env['HTTP_REFERER'] = store_url
     assert_difference('Cart.count', -1) do
-      session[:cart_id] = @cart.id
+      set_cart_session
       delete :destroy, id: @cart
     end
-    assert_redirected_to store_path
+    assert_redirected_to store_url
   end
 end

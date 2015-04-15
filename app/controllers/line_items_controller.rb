@@ -1,32 +1,21 @@
 class LineItemsController < ApplicationController
-  before_action :set_line_item, only: [:show, :edit, :update, :destroy]
 
-  def index
-    @line_items = LineItem.all
-  end
-
-  def show
-  end
-
-  def new
-    @line_item = LineItem.new
-  end
-
-  def edit
-  end
+  before_action :set_line_item, only: [:update, :destroy]
+  # before_action :current_cart, only: [:create]
 
   def create
+    if session[:cart_id].nil?
+      cart = Cart.create
+      session[:cart_id] = cart.id
+    end
     product = Product.find(params[:product_id])
     @line_item = current_cart.add_product(product.id, product.price)
-
     respond_to do |format|
       if @line_item.save
         format.html { redirect_to :back }
         format.js
-        format.json { render :show, status: :created, location: @line_item }
       else
-        format.html { render :new }
-        format.json { render json: @line_item.errors, status: :unprocessable_entity }
+        format.html { redirect_to store_path flash[:error] = "Can't create line item" }
       end
     end
   end
@@ -34,39 +23,63 @@ class LineItemsController < ApplicationController
   def update
     respond_to do |format|
       if @line_item.update(line_item_params)
-        format.html { redirect_to current_cart }
+        format.html { redirect_to :back }
         format.js { @current_item = @line_item }
-        format.json { render :show, status: :ok, location: @line_item }
       else
-        format.html { redirect_to current_cart }
-        format.json { render json: @line_item.errors, status: :unprocessable_entity }
+        format.html { redirect_to :back }
       end
     end
   end
 
+  # def destroy
+  #   @line_item.destroy
+  #   respond_to do |format|
+  #     if current_cart.line_items.empty?
+  #       current_cart.destroy
+  #       session[:cart_id] = nil
+  #       format.html { redirect_to store_url flash[:info] = 'Your cart is empty' }
+  #       format.js { render 'destroy_last' }
+  #     else
+  #       format.html { redirect_to current_cart }
+  #       format.js
+  #     end
+  #   end
+  # end
+
   def destroy
     @line_item.destroy
-    respond_to do |format|
-      if current_cart.line_items.empty?
-        current_cart.destroy
-        session[:cart_id] = nil
-        format.html { redirect_to store_url flash[:info] = 'Your cart is empty' }
-        format.js { render action: 'destroy_last' }
+    if session[:cart_id] != nil
+      respond_to do |format|
+        if current_cart.line_items.empty?
+          current_cart.destroy
+          session[:cart_id] = nil
+          format.html { redirect_to carts_path flash[:info] = 'Cart is empty' }
+          format.js { render 'destroy_last' }
+        else
+          format.html { redirect_to current_cart }
+          format.js
+        end
+      end
+    else
+      order = Order.find(@line_item.order)
+      if order.line_items.empty?
+        order.destroy
+        redirect_to orders_path
       else
-        format.html { redirect_to current_cart }
-        format.js
+        redirect_to :back
       end
     end
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_line_item
-      @line_item = LineItem.find(params[:id])
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def line_item_params
-      params.require(:line_item).permit(:product_id, :quantity)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_line_item
+    @line_item = LineItem.find(params[:id])
+  end
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def line_item_params
+    params.require(:line_item).permit(:product_id, :quantity, :order_id)
+  end
 end

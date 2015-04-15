@@ -1,0 +1,27 @@
+<h2>Orders index</h2>
+<hr>
+<table>
+  <% @orders.each_with_index do |order, i| %>
+    <tr class="<%= cycle('line-even', 'line-odd') %>">
+      <td><%= i+1 %></td>
+      <td>Order ID: <%= order.id %></td>
+      <td>
+        <%= link_to order do %>
+          <%= order.created_at.strftime '%Y.%m.%d - %H:%M:%S' %>
+        <% end %>
+      </td>
+      <td><%= order.email %></td>
+      <td><%= number_to_currency order.line_items.map(&:total_price).sum %></td>
+      <td><%= order.pay_type %></td>
+      <td class="control-links">
+        <%= link_to '', order, class: 'show-but',
+                    title: 'Show', 'data-toggle' => 'tooltip', 'data-placement' => 'top' %>
+        <%= link_to '', edit_order_path(order), class: 'edit-but',
+                    title: 'Edit', 'data-toggle' => 'tooltip', 'data-placement' => 'top' %>
+        <%= link_to '', order, method: :delete, data: { confirm: 'Are you sure?' }, class: 'del-but',
+                    title: 'Destroy', 'data-toggle' => 'tooltip', 'data-placement' => 'top' %>
+      </td>
+    </tr>
+  <% end %>
+</table>
+<hr>

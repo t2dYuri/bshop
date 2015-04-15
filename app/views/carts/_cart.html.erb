@@ -1,16 +1,16 @@
-<%= link_to '#', class: 'del-but pull-right', 'data-dismiss' => 'modal', 'aria-label' => 'Close' do %>
+<%= link_to '#', class: 'pull-right', 'data-dismiss' => 'modal', 'aria-label' => 'Close' do %>
   <span aria-hidden="true"><i class="glyphicon glyphicon-off"></i></span>
 <% end %>
 
-<h2>My Cart</h2>
-<div class="cart-body">
+<h3 class="center">My Cart</h3>
+
+<div class="entry">
   <table>
     <% current_cart.line_items.order(:created_at).each_with_index do |item, i| %>
-
       <% if item == @current_item %>
-        <tr id="current_item" class="<%= cycle('cart-line-even', 'cart-line-odd') %>">
+        <tr id="current_item" class="<%= cycle('line-even', 'line-odd') %>">
       <% else %>
-        <tr class="<%= cycle('cart-line-even', 'cart-line-odd') %>">
+        <tr class="<%= cycle('line-even', 'line-odd') %>">
       <% end %>
 
       <td><%= i+1 %></td>
@@ -18,32 +18,32 @@
       <td>
         <%= form_for item, remote: true do |f| %>
           <%= f.number_field :quantity, in: 1...101, class: 'qty-field' %>
-          <%= f.button '', class: 'btn-main glyphicon glyphicon-refresh' %>
+          <%= f.button '', class: 'btn-main glyphicon glyphicon-refresh', title: 'Save' %>
         <% end %>
       </td>
-      <td class="item-price">
+      <td class="control-links">
         <%= number_to_currency(item.total_price) %>
-        <%= link_to '', item, method: :delete, class: 'del-but glyphicon glyphicon-remove-sign', remote: true %>
+        <%= link_to '', item, method: :delete, class: 'del-but', title: 'Delete', remote: true %>
       </td>
       </tr>
     <% end %>
 
-    <tr class="total-line">
+    <tr class="table-total-line item-price">
       <td id="sum-price" colspan="4">Total : <%= number_to_currency(cart.total_price) %></td>
     </tr>
   </table>
 </div>
-<div class="cart-bottom-line">
 
-  <%= button_to '#', class: 'btn-main', 'data-dismiss' => 'modal', 'aria-label' => 'Close' do %>
+<div class="bottom-line">
+  <%= link_to '#', class: 'btn-main', 'data-dismiss' => 'modal', 'aria-label' => 'Close' do %>
     <span aria-hidden="true"><i class="glyphicon glyphicon-level-up"></i> Hide Cart</span>
   <% end %>
 
-  <%= button_to cart, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn-delete' do %>
+  <%= link_to current_cart, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn-delete' do %>
     <i class="glyphicon glyphicon-remove"></i> Empty cart
   <% end %>
 
-  <%= button_to '#', class: 'btn-confirm pull-right' do %>
-    <i class="glyphicon glyphicon-ok"></i> Confirm order
+  <%= link_to new_order_path, class: 'btn-confirm pull-right' do %>
+    <i class="glyphicon glyphicon-ok"></i> Make Order
   <% end %>
 </div>

@@ -1,0 +1,41 @@
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+
+    <%= form_for @order do |f| %>
+      <%= render 'shared/error_messages', object: f.object %>
+
+      <%= f.label :name %>
+      <%= f.text_field :name, class: 'form-control',
+                       'placeholder' => 'Enter your full name' %>
+
+      <%= f.label :email %>
+      <%= f.text_field :email, class: 'form-control',
+                       'placeholder' => 'Enter your contact email' %>
+
+      <%= f.label :address %>
+      <%= f.text_area :address, class: 'form-control', rows: 6,
+                      'placeholder' => 'Enter delivery address for this order' %>
+
+      <%= f.label :pay_type %>
+      <%= f.select :pay_type, options_for_select(Order::PAYMENT_TYPES),
+               {prompt: 'Select a payment method'}, {class: 'form-control'} %>
+
+      <%= f.button class: 'btn-main' do %>
+        <i class="glyphicon glyphicon-ok"></i> Confirm Order
+      <% end %>
+
+      &nbsp;Please, check your data and
+      <span data-toggle="modal" data-target=".cart-mod">
+        <%= link_to '#', class: 'nav-my-cart' do %>
+          <i class="glyphicon glyphicon-shopping-cart"></i> Order list
+        <% end %>
+      </span>
+      before confirmation
+
+    <% end %>
+
+    <%= link_to store_path, class: 'pull-right' do %>
+      <i class="glyphicon glyphicon-repeat"></i> Back to store
+    <% end %>
+  </div>
+</div>

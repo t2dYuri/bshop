@@ -1,5 +1,6 @@
 class CartsController < ApplicationController
-  before_action :set_cart, only: [:show, :edit, :update, :destroy]
+
+  before_action :set_cart, only: [:show, :destroy]
 
   rescue_from ActiveRecord::RecordNotFound, with: :invalid_cart
 
@@ -8,50 +9,16 @@ class CartsController < ApplicationController
   end
 
   def show
-  end
-
-  def new
-    @cart = Cart.new
-  end
-
-  def edit
-  end
-
-  def create
-    @cart = Cart.new(cart_params)
-
-    respond_to do |format|
-      if @cart.save
-        format.html { redirect_to @cart, notice: 'Cart was successfully created.' }
-        format.json { render :show, status: :created, location: @cart }
-      else
-        format.html { render :new }
-        format.json { render json: @cart.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
-  def update
-    respond_to do |format|
-      if @cart.update(cart_params)
-        format.html { redirect_to @cart, notice: 'Cart was successfully updated.' }
-        format.json { render :show, status: :ok, location: @cart }
-      else
-        format.html { render :edit }
-        format.json { render json: @cart.errors, status: :unprocessable_entity }
-      end
+    if @cart != current_cart
+      redirect_to store_path flash[:error] = 'Invalid cart'
     end
   end
 
   def destroy
-    # @cart.destroy if @cart.id == session[:cart_id]
     @cart.destroy
     # current_cart.destroy
     session[:cart_id] = nil
-    respond_to do |format|
-      format.html { redirect_to store_url, notice: 'Cart destroyed' }
-      format.json { head :no_content }
-    end
+    redirect_to :back, notice: 'Cart destroyed'
   end
 
   private
@@ -61,13 +28,8 @@ class CartsController < ApplicationController
     @cart = Cart.find(params[:id])
   end
 
-  # Never trust parameters from the scary internet, only allow the white list through.
-  def cart_params
-    params[:cart]
-  end
-
   def invalid_cart
     logger.error "Attempt to access invalid cart #{params[:id]}"
-    redirect_to store_url, notice: 'Invalid cart'
+    redirect_to store_url flash[:error] = 'Invalid cart'
   end
 end

@@ -5,19 +5,12 @@ class LineItemsControllerTest < ActionController::TestCase
     @line_item = line_items(:one)
   end
 
-  test "should get index" do
-    get :index
-    assert_response :success
-    assert_not_nil assigns(:line_items)
-  end
-
-  test "should get new" do
-    get :new
-    assert_response :success
+  def set_referer
+    request.env['HTTP_REFERER'] = store_url
   end
 
   test 'should create line_item' do
-    request.env['HTTP_REFERER'] = store_url
+    set_referer
     assert_difference('LineItem.count') do
       post :create, product_id: products(:bike).id
     end
@@ -38,44 +31,65 @@ class LineItemsControllerTest < ActionController::TestCase
     end
   end
 
-  test "should show line_item" do
-    get :show, id: @line_item
-    assert_response :success
+  test 'should create line item with default quantity' do
+    set_referer
+    post :create, product_id: products(:bike).id
+    assert_equal 1, @line_item.quantity
   end
 
-  test "should get edit" do
-    get :edit, id: @line_item
-    assert_response :success
-  end
-
-  test "should update line_item" do
+  test 'should update line_item' do
+    set_cart_session
+    set_referer
     patch :update, id: @line_item, line_item: { product_id: @line_item.product_id }
-    # assert_redirected_to line_item_path(assigns(:line_item))
-    assert_redirected_to cart_path(session[:cart_id])
+    assert_redirected_to store_url(session[:cart_id])
   end
 
   test 'should update line_item with ajax' do
+    set_cart_session
     xhr :patch, :update, id: @line_item, line_item: { product_id: @line_item.product_id }
     assert_response :success
     assert_select_jquery :html, '#current_cart' do
-      assert_select 'h2', 'My Cart'
+      assert_select 'h3', 'My Cart'
     end
     assert @current_item = @line_item
   end
 
-  test "should destroy line_item" do
+  test 'should destroy line item' do
+    set_cart_session
     assert_difference('LineItem.count', -1) do
       delete :destroy, id: @line_item
     end
-    # assert_redirected_to Cart.find(session[:cart_id])
-    assert_redirected_to store_url
+    assert_redirected_to Cart.find(session[:cart_id])
+    assert flash.empty?
   end
 
-  test 'should destroy line_item with ajax' do
+  test 'should destroy last line item and cart' do
+    set_cart_session
+    delete :destroy, id: @line_item
+    assert_difference('Cart.count', -1) do
+      delete :destroy, id: line_items(:two)
+    end
+    # assert_redirected_to carts_path
+    assert_response :redirect
+    assert_not flash.empty?
+  end
+
+  test 'should destroy line item with ajax' do
+    set_cart_session
     assert_difference('LineItem.count', -1) do
       xhr :delete, :destroy, id: @line_item
     end
     assert_response :success
-    assert_match /window.location.replace/, response.body
+    assert_select_jquery :html, '#current_cart'
+  end
+
+  test 'should destroy last line item and cart with ajax' do
+    set_cart_session
+    xhr :delete, :destroy, id: @line_item
+    assert_difference('Cart.count', -1) do
+      xhr :delete, :destroy, id: line_items(:two)
+    end
+    assert_response :success
+    assert_match /Your cart is empty/, response.body
   end
 end

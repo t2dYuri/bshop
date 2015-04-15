@@ -12,41 +12,40 @@ $act-font-color: #d0d3d2;
 $acc-font-color: #7dcb86;
 $del-font-color: #ea8684;
 $link-color: #14B89A;
-$link-hover: #04AED0;
+$link-hover: #04baf3;
 
 $nice-green: #518154;
 $pure-green: #235139;
 $nice-blue: #276998;
 $pure-blue: #224c76;
-$nice-red: #a05e5e;
+$nice-yellow: #c2b648;
+$nice-red: #d57977;
 $pure-red: #512626;
 
-
-$pure: #1d734d;
-$pur: rgba(0,0,0,0.1);
-
-/* --- Links --- */
-a:link, a:visited {
-  outline: none;
-  color: $link-color;
-  text-decoration: none;
-  &:hover, &:focus, &:active {
-    color: $link-hover;
-  }
-}
-
+html { background: $body-back-color; }
 body {
   background: $body-back-color;
   color: $reg-font-color;
 }
 
-h1, h2, h3, h4, h5, h6 { line-height: 1; }
-h1, h2 { text-align: center; }
-h2 { margin-top: 15px; }
+.container-fluid {
+  background: $container-back-color;
+  max-width: $max-body-width;
+  margin-top: 50px;
+  margin-bottom: 20px;
+  padding-bottom: 10px;
+  border-radius: 6px;
+}
 
-h4, h5, h6 {
-  margin-top: 2px;
-  margin-bottom: 2px;
+//h1, h2, h3, h4, h5, h6 { line-height: 1; }
+h1, h2 { text-align: center; }
+h2 { margin-top: 10px; }
+h3 { margin-top: 10px; }
+h4 { margin: 5px }
+
+.heading-text {
+  color: $act-font-color;
+  font-weight: bold;
 }
 
 .form-control {
@@ -57,68 +56,14 @@ h4, h5, h6 {
 
 textarea { resize: vertical; }
 .center { text-align: center; }
+.bottom-line { margin-top: 10px; }
 
-.container-fluid {
-  border-radius: 6px;
-  margin-top: 50px;
-  margin-bottom: 20px;
-  background: $container-back-color;
-  max-width: $max-body-width;
-}
-
-/* --- Buttons --- */
-.btn:focus, .btn:focus:active { outline: none; }
-
-.btn-main, .btn-main:link, .btn-main:visited {
-  color: $reg-font-color;
-  background: $pure-blue none;
-  border: 1px solid $nice-blue;
-  padding: 4px 8px;
-  text-align: center;
-  vertical-align: middle;
-  border-radius: 4px;
-  display: inline-block;
-  cursor: pointer;
-  box-sizing: border-box;
-  white-space: nowrap;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-//  -webkit-appearance: button;
-//  -moz-appearance: button;
-//  -ms-appearance: button;
-//  appearance: button;
-  &:hover, &:active, &:focus {
-    color: $act-font-color;
-    background: $nice-blue none;
-    border: 1px solid $pure-blue;
-    text-decoration: none;
-  }
-}
-
-.btn-confirm, .btn-confirm:link, .btn-confirm:visited {
-  @extend .btn-main;
-  color: $act-font-color;
-  background: $pure-green none;
-  border: 1px solid $nice-green;
-  &:hover, &:active, &:focus {
-    color: $act-font-color;
-    background: $nice-green none;
-    border: 1px solid $pure-green;
-  }
-}
-
-.btn-delete, .btn-delete:link, .btn-delete:visited {
-  @extend .btn-main;
-  color: $reg-font-color;
-  background: $pure-red none;
-  border: 1px solid $nice-red;
-  &:hover, &:active, &:focus {
-    color: $act-font-color;
-    background: $nice-red none;
-    border: 1px solid $pure-red;
-  }
+/* --- Links --- */
+a:link, a:visited {
+  outline: none;
+  color: $link-color;
+  text-decoration: none;
+  &:hover, &:focus, &:active { color: $link-hover; }
 }
 
 /* --- Navbars --- */
@@ -147,47 +92,72 @@ textarea { resize: vertical; }
   &:hover, &:active, &:focus { color: $act-font-color; }
 }
 
+/* --- Modal window --- */
 .modal-content {
   background: $body-back-color;
   .modal-body {
     background: $container-back-color;
     border-radius: 6px;
   }
-  .cart-body {
-    overflow: auto;
+}
+
+/* --- Lists --- */
+.line-even { background: $element-even-color; }
+.line-odd { background: $element-odd-color; }
+.control-links {
+  text-align: right;
+  vertical-align: middle;
+}
+.item-price { text-align: right; }
+
+table {
+  width: 100%;
+  tr td { padding: 5px; }
+  .table-total-line { background: $pure-blue; }
+}
+
+.img-list {
+  width: 100px;
+  height: 100px;
+  border-radius: 6px;
+}
+
+.qty-field {
+  background: $input-screen-color;
+  color: $act-font-color;
+  border-radius: 4px;
+  border: 1px solid transparent;
+  padding-left: 5px;
+  vertical-align: middle;
+}
+
+/* --- Product entry --- */
+.entry {
+  position: relative;
+  overflow: auto;
+  border-radius: 6px;
+  padding: 10px;
+  border: 1px solid $input-screen-color;
+  background: $element-odd-color;
+
+  img {
     border-radius: 6px;
-    padding: 10px;
-    border: 1px solid $input-screen-color;
-    background: $element-odd-color;
+    margin-right: 10px;
   }
-  table {
-    width: 100%;
-    td { padding: 5px; }
-  }
-  .cart-line-even { background: $element-even-color; }
-  .cart-line-odd { background: $element-odd-color; }
-  .item-price, .total-line { text-align: right; }
-  .total-line { background: $pure-blue; }
-  .cart-bottom-line {
-    margin-top: 10px;
-    margin-bottom: 10px;
+
+  .last_line {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+
+    .price {
+      color: $link-hover;
+      font-weight: bold;
+    }
+
     form, div {
       display: inline;
       margin-left: 10px;
     }
   }
-  .del-but {
-    margin-left: 5px;
-    &:hover { color: $del-font-color; }
-  }
-  .qty-field {
-    background: $input-screen-color;
-    color: $act-font-color;
-    border-radius: 4px;
-    border: 1px solid transparent;
-    padding-left: 5px;
-    vertical-align: middle;
-  }
-  .btn-main { top: 0; }
 }
-

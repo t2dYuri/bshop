@@ -16,13 +16,16 @@ class CartTest < ActiveSupport::TestCase
   end
 
   test 'should add products to cart' do
+
     # adding first product to cart
     @cart.add_product(@product1.id, @product1.price).save!
     assert_equal 1, @cart.line_items.count
+
     # adding second product to cart
     assert_difference '@cart.line_items.count', +1 do
       @cart.add_product(@product2.id, @product2.price).save!
     end
+
     # adding first product few more times
     assert_no_difference '@cart.line_items.count' do
       3.times { @cart.add_product(@product1.id, @product1.price).save! }
