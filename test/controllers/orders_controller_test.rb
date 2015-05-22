@@ -3,7 +3,17 @@ require 'test_helper'
 class OrdersControllerTest < ActionController::TestCase
   setup do
     @order = orders(:one)
-    @params = { name: 'Example Name', address: 'Example address', email: 'example@mail.com', pay_type: 'Check' }
+    @params = { name: 'Some Name',
+                address: 'Some address',
+                email: 'some@mail.com',
+                email_confirmation: 'some@mail.com',
+                pay_type: 'Check',
+                zip_code: '54321',
+                country: 'Some country',
+                region: 'Some region',
+                city: 'Some city',
+                phone: '+1 (098) 765-43-21',
+                add_info: 'Customer add info' }
   end
 
   test 'should get index' do

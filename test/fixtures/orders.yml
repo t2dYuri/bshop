@@ -3,9 +3,21 @@ one:
   address: Example address
   email: example@mail.com
   pay_type: Credit card
+  zip_code: 12345
+  country: Example country
+  region: Example region
+  city: Example city
+  phone: 10123456789
+  add_info: Example additional info
 
 two:
   name: MyString
   address: MyText
   email: MyString
   pay_type: MyString
+  zip_code: 54321
+  country: MyCountry
+  region: MyRegion
+  city: MyCity
+  phone: 10123334455
+  add_info: MyAddInfo

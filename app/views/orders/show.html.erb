@@ -4,7 +4,15 @@
   <div class="col-md-4">
     <p><strong>Name: </strong><%= @order.name %></p>
     <p><strong>Email: </strong><%= @order.email %></p>
-    <p><strong>Address: </strong><%= @order.address.html_safe %></p>
+    <p><strong>Phone: </strong><%= number_to_phone @order.phone, area_code: true %></p>
+    <p><strong>Delivery address: </strong>
+      <%= @order.zip_code %>,
+      <%= @order.country %>,
+      <%= @order.region %>,
+      <%= @order.city %>,
+      <%= @order.address.html_safe %>
+    </p>
+    <p><strong>Additional info: </strong><%= @order.add_info.html_safe %></p>
     <p><strong>Pay type: </strong><%= @order.pay_type %></p>
   </div>
 
@@ -16,17 +24,18 @@
           <td><%= item.product.title %></td>
           <td>
             <%= form_for item do |f| %>
+              <%= number_to_currency item.price %> &times;
               <%= f.number_field :quantity, in: 1...101, class: 'qty-field' %>
               <%= f.button '', class: 'btn-main glyphicon glyphicon-refresh',
-                           title: 'Save', 'data-toggle' => 'tooltip', 'data-placement' => 'top' %>
+                           title: 'Save', data: { toggle: 'tooltip', placement: 'top' } %>
             <% end %>
           </td>
           <td class="item-price"><%= number_to_currency item.total_price %></td>
           <td class="control-links">
             <%= link_to '', item.product, class: 'show-but',
-                        title: 'Show product', 'data-toggle' => 'tooltip', 'data-placement' => 'top' %>
-            <%= link_to '', item, method: :delete, data: {confirm: 'You sure?'}, class: 'del-but',
-                        title: 'Delete item', 'data-toggle' => 'tooltip', 'data-placement' => 'top' %>
+                        title: 'Show product', data: { toggle: 'tooltip', placement: 'top' } %>
+            <%= link_to '', item, method: :delete, class: 'del-but', title: 'Delete item',
+                        data: { confirm: 'You sure?', toggle: 'tooltip', placement: 'top' } %>
           </td>
         </tr>
       <% end %>
@@ -39,11 +48,11 @@
 <hr>
 
 <div class="bottom-line center">
-  <%= link_to '', orders_path, class: 'back-but',
-              title: 'Back to orders', 'data-toggle' => 'tooltip', 'data-placement' => 'top' %>
-  <%= link_to '', edit_order_path(@order), class: 'edit-but',
-              title: 'Edit', 'data-toggle' => 'tooltip', 'data-placement' => 'top' %>
-  <%= link_to '', @order, method: :delete, data: {confirm: 'You sure?'}, class: 'del-but',
-              title: 'Delete', 'data-toggle' => 'tooltip', 'data-placement' => 'top' %>
+  <%= link_to '', orders_path, class: 'back-but', title: 'Back to orders',
+              data: { toggle: 'tooltip', placement: 'top' } %>
+  <%= link_to '', edit_order_path(@order), class: 'edit-but', title: 'Edit',
+              data: { toggle: 'tooltip', placement: 'top' } %>
+  <%= link_to '', @order, method: :delete, class: 'del-but', title: 'Delete',
+              data: { confirm: 'You sure?', toggle: 'tooltip', placement: 'top' } %>
 </div>
 

@@ -1,0 +1,16 @@
+<h3 style="text-align: center">
+  Dear <%= @order.name %>, your order with ID <span style="color: #d0d3d2"><%= @order.id %></span> shipped.
+</h3>
+
+<p>Delivery address: <strong>
+  <%= @order.zip_code %>,
+  <%= @order.country %>,
+  <%= @order.region %>,
+  <%= @order.city %>,
+  <%= @order.address.html_safe %>
+</strong></p>
+
+<div style="background: #1a1a1a; color: #a2a7a6; padding: 10px; border-radius: 6px">
+  <h4 style="text-align: center; margin: 10px">Order contents:</h4>
+  <%= render 'line_items_list' %>
+</div>

@@ -1,0 +1,25 @@
+<h3 style="text-align: center">Dear <%= @order.name %>, Thank you for your order</h3>
+
+<div style="background: #1a1a1a; color: #a2a7a6; padding: 10px; border-radius: 6px">
+  <h4 style="text-align: center; margin: 10px">
+    Order ID: <span style="color: #d0d3d2"><%= @order.id %></span>, created at:
+    <span style="color: #d0d3d2"><%= @order.created_at.strftime '%Y.%m.%d - %H:%M:%S' %></span>
+  </h4>
+  <%= render 'line_items_list' %>
+  <p>Your phone number: <span style="color: #d0d3d2">
+    <%= number_to_phone @order.phone, area_code: true %>
+  </span></p>
+  <p>Delivery address: <span style="color: #d0d3d2">
+    <%= @order.zip_code %>,
+    <%= @order.country %>,
+    <%= @order.region %>,
+    <%= @order.city %>,
+    <%= @order.address.html_safe %>
+  </span></p>
+  <p>Additional info: <span style="color: #d0d3d2"><%= @order.add_info.html_safe %></span></p>
+  <p>Payment type: <span style="color: #d0d3d2"><%= @order.pay_type %></span></p>
+</div>
+
+<p style="text-align: center; font-weight: bold">
+  We'll send you a separate e-mail when your order ships.
+</p>

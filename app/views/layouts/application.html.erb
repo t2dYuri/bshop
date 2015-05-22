@@ -15,26 +15,14 @@
   </span>
 
   <span id="cart_modal">
-    <% if session[:cart_id].present? %>
-      <%= render 'layouts/cart_modal' %>
-    <% end %>
+    <%= render 'carts/cart_modal' if session[:cart_id].present? %>
   </span>
 
   <div class="container-fluid">
-
-    <% unless flash.empty? %>
-      <script type="text/javascript">
-        <% flash.each do |f| %>
-        <% type = f[0].gsub('alert', 'error').gsub('notice', 'info') %>
-        toastr['<%= type %>']('<%= f[1] %>', '<%= type %>');
-        <% end %>
-      </script>
-    <% end %>
-
+    <%= render 'shared/flash' unless flash.empty? %>
     <div class="<%= controller.controller_name %>">
       <%= yield %>
     </div>
-
   </div>
 
   </body>

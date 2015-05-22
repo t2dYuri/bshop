@@ -1,0 +1,20 @@
+<table style="width: 100%">
+  <% @order.line_items.order(:created_at).each do |item| %>
+    <tr style="<%= cycle('background: #27323c;', 'background: #2d3744;') %>">
+      <td style="padding: 5px">
+        <%= item.quantity %> &times; <%= number_to_currency item.price %>
+      </td>
+      <td style="padding: 5px">
+        <%= item.product.title %>
+      </td>
+      <td style="text-align: right; padding: 5px; color: #d0d3d2;">
+        <%= number_to_currency(item.total_price) %>
+      </td>
+    </tr>
+  <% end %>
+  <tr style="text-align: center; background: #224c76;">
+    <td colspan="3" style="padding: 5px; color: #d0d3d2;">
+      Total order price: <%= number_to_currency @order.line_items.map(&:total_price).sum %>
+    </td>
+  </tr>
+</table>

@@ -1,4 +1,3 @@
-<%#= render current_cart %>
 <h3 class="center">Cart ID: <%= @cart.id %></h3>
 
 <div class="entry">
@@ -26,10 +25,10 @@
 </div>
 
 <div class="bottom-line center">
-  <%= link_to '', carts_path, class: 'back-but',
-              title: 'Back to carts', 'data-toggle' => 'tooltip', 'data-placement' => 'top' %>
-  <%= link_to '', @cart, method: :delete, data: {confirm: 'You sure?'}, class: 'del-but',
-              title: 'Delete cart', 'data-toggle' => 'tooltip', 'data-placement' => 'top' %>
+  <%= link_to '', carts_path, class: 'back-but', title: 'Back to carts',
+              data: { toggle: 'tooltip', placement: 'top' } %>
+  <%= link_to '', @cart, method: :delete, class: 'del-but', title: 'Delete cart',
+              data: { confirm: 'You sure?', toggle: 'tooltip', placement: 'top' } %>
   <%= link_to '', new_order_path, id: 'control-but', class: 'glyphicon glyphicon-play-circle',
-              title: 'Create order', 'data-toggle' => 'tooltip', 'data-placement' => 'top' %>
+              title: 'Create order', data: { toggle: 'tooltip', placement: 'top' } %>
 </div>

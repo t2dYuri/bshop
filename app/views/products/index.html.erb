@@ -10,12 +10,12 @@
         <div class="heading-text"><%= number_to_currency product.price %></div>
       </td>
       <td class="control-links">
-        <%= link_to '', product, class: 'show-but',
-                    title: 'Show', 'data-toggle' => 'tooltip', 'data-placement' => 'top' %><br>
-        <%= link_to '', edit_product_path(product), class: 'edit-but',
-                    title: 'Edit', 'data-toggle' => 'tooltip', 'data-placement' => 'top' %><br>
-        <%= link_to '', product, method: :delete, class: 'del-but',
-                    title: 'Destroy', 'data-toggle' => 'tooltip', 'data-placement' => 'top' %>
+        <%= link_to '', product, class: 'show-but', title: 'Show',
+                    data: { toggle: 'tooltip', placement: 'top' } %><br>
+        <%= link_to '', edit_product_path(product), class: 'edit-but', title: 'Edit',
+                    data: { toggle: 'tooltip', placement: 'top' } %><br>
+        <%= link_to '', product, method: :delete, class: 'del-but', title: 'Destroy',
+                    data: { toggle: 'tooltip', placement: 'top' } %>
       </td>
     </tr>
   <% end %>

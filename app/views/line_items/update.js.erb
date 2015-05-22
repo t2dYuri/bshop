@@ -1,9 +1,9 @@
 $('#current_cart').html("<%= escape_javascript render current_cart %>");
 
-var current_item = $('#current_item');
-var color1 = current_item.css('color');
-current_item.css({'color':'#ffffff'}).animate({'color': color1}, 1000);
+var item = $('#current_item'),
+    line = $('.table-total-line'),
+    item_color = item.css('color'),
+    line_color = line.css('color');
 
-var total_line = $('.table-total-line');
-var color2 = total_line.css('color');
-total_line.css({'color':'#ffffff'}).animate({'color': color2}, 1000);
+item.css({'color':'#ffffff'}).animate({'color': item_color}, 1000);
+line.css({'color':'#ffffff'}).animate({'color': line_color}, 1000);

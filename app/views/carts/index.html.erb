@@ -13,9 +13,9 @@
       <td><%= number_to_currency(cart.total_price) %></td>
       <td class="control-links">
         <%= link_to '', cart, class: 'show-but',
-                    title: 'Show', 'data-toggle' => 'tooltip', 'data-placement' => 'top' %>
+                    title: 'Show', data: { toggle: 'tooltip', placement: 'top' } %>
         <%= link_to '', cart, method: :delete, class: 'del-but',
-                    title: 'Destroy', 'data-toggle' => 'tooltip', 'data-placement' => 'top' %>
+                    title: 'Destroy', data: { toggle: 'tooltip', placement: 'top' } %>
       </td>
     </tr>
   <% end %>

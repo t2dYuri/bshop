@@ -3,7 +3,7 @@ class OrdersController < ApplicationController
   before_action :current_cart, only: [:new, :create]
 
   def index
-    @orders = Order.all
+    @orders = Order.all.includes(:line_items)
   end
 
   def show
@@ -26,7 +26,8 @@ class OrdersController < ApplicationController
     if @order.save
       current_cart.destroy
       session[:cart_id] = nil
-      redirect_to store_url, notice: 'Thank you for your order.'
+      OrderNotifier.received(@order).deliver_now
+      redirect_to store_url, notice: 'Order created. Please, check your email'
     else
       render :new
     end
@@ -54,6 +55,16 @@ class OrdersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def order_params
-      params.require(:order).permit(:name, :address, :email, :pay_type)
+      params.require(:order).permit(:name,
+                                    :email,
+                                    :email_confirmation,
+                                    :pay_type,
+                                    :zip_code,
+                                    :country,
+                                    :region,
+                                    :city,
+                                    :address,
+                                    :phone,
+                                    :add_info)
     end
 end

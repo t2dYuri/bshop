@@ -1,0 +1,11 @@
+Dear <%= @order.name %>, Thank you for your order from The BShop.
+
+Your order ID is: <%= @order.id %>
+
+You ordered the following items:
+<%#= render @order.line_items -%>
+<% @order.line_items.order(:created_at).each do |item| %>
+  <%= sprintf('%2d x %s', item.quantity, truncate(item.product.title, length: 50)) %>
+  <% end %>
+
+We'll send you a separate e-mail when your order ships.

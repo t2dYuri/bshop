@@ -1,41 +1,75 @@
-<div class="row">
-  <div class="col-md-6 col-md-offset-3">
+<%= form_for @order do |f| %>
+  <%= render 'shared/error_messages', object: f.object %>
 
-    <%= form_for @order do |f| %>
-      <%= render 'shared/error_messages', object: f.object %>
-
+  <div class="row">
+    <div class="col-md-6">
       <%= f.label :name %>
       <%= f.text_field :name, class: 'form-control',
-                       'placeholder' => 'Enter your full name' %>
+                       placeholder: 'Enter your full name' %>
 
       <%= f.label :email %>
-      <%= f.text_field :email, class: 'form-control',
-                       'placeholder' => 'Enter your contact email' %>
+      <%= f.email_field :email, class: 'form-control',
+                       placeholder: 'Enter your contact email' %>
+
+      <%= f.label :email_confirmation %>
+      <%= f.email_field :email_confirmation, class: 'form-control',
+                       placeholder: 'Please, confirm your email' %>
+
+      <%= f.label :phone, 'Phone Number, example: +12(034)123-4567' %>
+      <%= f.text_field :phone, class: 'form-control',
+                       placeholder: 'Contact phone number, international format' %>
+
+      <%= f.label :add_info, 'Additional Information' %>
+      <%= f.text_area :add_info, class: 'form-control', rows: 4,
+                      placeholder: 'Additional customer information (If needed)' %>
+    </div>
+
+    <div class="col-md-6">
+      <%= f.label :zip_code %>
+      <%= f.text_field :zip_code, class: 'form-control',
+                       placeholder: 'Enter your zip (postal) code' %>
+
+      <%= f.label :country %>
+      <%= f.text_field :country, class: 'form-control',
+                       placeholder: 'Enter your country' %>
+
+      <%= f.label :region %>
+      <%= f.text_field :region, class: 'form-control',
+                       placeholder: 'Enter your region (state)' %>
+
+      <%= f.label :city %>
+      <%= f.text_field :city, class: 'form-control',
+                       placeholder: 'Enter your city' %>
 
       <%= f.label :address %>
-      <%= f.text_area :address, class: 'form-control', rows: 6,
-                      'placeholder' => 'Enter delivery address for this order' %>
+      <%= f.text_area :address, class: 'form-control', rows: 4,
+                      placeholder: 'Enter delivery address for this order' %>
+    </div>
+  </div>
 
-      <%= f.label :pay_type %>
+  <div class="row">
+    <div class="col-md-6 col-md-offset-3">
+      <%= f.label :pay_type, 'Payment type' %>
       <%= f.select :pay_type, options_for_select(Order::PAYMENT_TYPES),
-               {prompt: 'Select a payment method'}, {class: 'form-control'} %>
+                   {prompt: 'Select a payment method'}, {class: 'form-control'} %>
 
-      <%= f.button class: 'btn-main' do %>
+      <p class="center">
+        Please, check your personal data and
+        <span data-toggle="modal" data-target=".cart-mod">
+          <%= link_to '#', class: 'nav-my-cart' do %>
+            <i class="glyphicon glyphicon-shopping-cart"></i> Order list
+          <% end %>
+        </span>
+        before confirmation
+      </p>
+
+      <%= f.button class: 'btn-main btn-block' do %>
         <i class="glyphicon glyphicon-ok"></i> Confirm Order
       <% end %>
-
-      &nbsp;Please, check your data and
-      <span data-toggle="modal" data-target=".cart-mod">
-        <%= link_to '#', class: 'nav-my-cart' do %>
-          <i class="glyphicon glyphicon-shopping-cart"></i> Order list
-        <% end %>
-      </span>
-      before confirmation
-
-    <% end %>
-
-    <%= link_to store_path, class: 'pull-right' do %>
-      <i class="glyphicon glyphicon-repeat"></i> Back to store
-    <% end %>
+    </div>
   </div>
-</div>
+<% end %>
+
+<%= link_to store_path, class: 'pull-right' do %>
+  <i class="glyphicon glyphicon-repeat"></i> Back to store
+<% end %>

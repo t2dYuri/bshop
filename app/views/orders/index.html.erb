@@ -14,12 +14,12 @@
       <td><%= number_to_currency order.line_items.map(&:total_price).sum %></td>
       <td><%= order.pay_type %></td>
       <td class="control-links">
-        <%= link_to '', order, class: 'show-but',
-                    title: 'Show', 'data-toggle' => 'tooltip', 'data-placement' => 'top' %>
-        <%= link_to '', edit_order_path(order), class: 'edit-but',
-                    title: 'Edit', 'data-toggle' => 'tooltip', 'data-placement' => 'top' %>
-        <%= link_to '', order, method: :delete, data: { confirm: 'Are you sure?' }, class: 'del-but',
-                    title: 'Destroy', 'data-toggle' => 'tooltip', 'data-placement' => 'top' %>
+        <%= link_to '', order, class: 'show-but', title: 'Show',
+                    data: { toggle: 'tooltip', placement: 'top' } %>
+        <%= link_to '', edit_order_path(order), class: 'edit-but', title: 'Edit',
+                    data: { toggle: 'tooltip', placement: 'top' } %>
+        <%= link_to '', order, method: :delete, class: 'del-but', title: 'Destroy',
+                    data: { confirm: 'Are you sure?', toggle: 'tooltip', placement: 'top' } %>
       </td>
     </tr>
   <% end %>

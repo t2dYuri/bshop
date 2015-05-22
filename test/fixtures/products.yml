@@ -18,3 +18,10 @@ bike:
     Entry-level bikes with performance thats anything but entry-level.
   price: 820.50
   image_url: test01.jpg
+
+frame:
+  title: Fireeye Flame
+  description:
+    CrMo bike frame for all-mountain riding
+  price: 300.00
+  image_url: test02.jpg

@@ -14,10 +14,10 @@
 </div>
 
 <div class="bottom-line center">
-  <%= link_to '', products_path, class: 'back-but',
-              title: 'Back to products', 'data-toggle' => 'tooltip', 'data-placement' => 'top' %>
-  <%= link_to '', edit_product_path(@product), class: 'edit-but',
-              title: 'Edit', 'data-toggle' => 'tooltip', 'data-placement' => 'top' %>
-  <%= link_to '', @product, method: :delete, data: {confirm: 'You sure?'}, class: 'del-but',
-              title: 'Delete', 'data-toggle' => 'tooltip', 'data-placement' => 'top' %>
+  <%= link_to '', :back, class: 'back-but', title: 'Return',
+              data: { toggle: 'tooltip', placement: 'top' } %>
+  <%= link_to '', edit_product_path(@product), class: 'edit-but', title: 'Edit',
+              data: { toggle: 'tooltip', placement: 'top' } %>
+  <%= link_to '', @product, method: :delete, class: 'del-but', title: 'Delete',
+              data: { confirm: 'You sure?', toggle: 'tooltip', placement: 'top' } %>
 </div>

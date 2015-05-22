@@ -30,10 +30,10 @@
 
     <% if session[:cart_id].present? %>
       <span data-toggle="modal" data-target=".cart-mod">
-      <%= link_to '#', class: 'btn nav-but nav-my-cart' do %>
-        <i class="glyphicon glyphicon-shopping-cart"></i>
+        <%= link_to '#', class: 'btn nav-but nav-my-cart' do %>
+          <i class="glyphicon glyphicon-shopping-cart"></i>
           &nbsp;My Cart (<%= pluralize current_cart.line_items.count, 'item' %>)
-      <% end %>
+        <% end %>
       </span>
     <% end %>
 

@@ -1,6 +1,7 @@
 one:
   product: bike
   cart: one
+  order: one
   price: 820.50
 
 two:

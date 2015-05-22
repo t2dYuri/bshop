@@ -5,7 +5,7 @@ class CartsController < ApplicationController
   rescue_from ActiveRecord::RecordNotFound, with: :invalid_cart
 
   def index
-    @carts = Cart.all
+    @carts = Cart.all.includes(:line_items)
   end
 
   def show

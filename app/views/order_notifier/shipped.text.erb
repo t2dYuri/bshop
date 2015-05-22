@@ -1,0 +1,8 @@
+Dear <%= @order.name %>, your order with ID <%= @order.id %> shipped.
+
+Delivery address: <%= @order.address.html_safe %>
+
+<%#= render @order.line_items -%>
+<% @order.line_items.order(:created_at).each do |item| %>
+  <%= sprintf('%2d x %s', item.quantity, truncate(item.product.title, length: 50)) %>
+<% end %>
