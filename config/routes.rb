@@ -1,4 +1,11 @@
 Rails.application.routes.draw do
+
+  get    'login'   => 'sessions#new'
+  post   'login'   => 'sessions#create'
+  delete 'logout'  => 'sessions#destroy'
+
+  get    'reg_user'  => 'users#new'
+  resources :users
   resources :orders
   resources :line_items, only: [:create, :update, :destroy]
   resources :carts, only: [:index, :show, :destroy]

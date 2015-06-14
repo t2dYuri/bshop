@@ -1,0 +1,29 @@
+<% if current_user.try(:admin?) %>
+  <h3 class="center">Administrative options</h3>
+  <div class="adm-section">
+
+      <%= link_to products_path, class: 'btn-main btn-block' do %>
+        <i class="glyphicon glyphicon-th-list"></i> Products (<%= pluralize Product.count, 'item' %>)
+      <% end %>
+
+      <%= link_to new_product_path, class: 'btn-main btn-block' do %>
+        <i class="glyphicon glyphicon-plus"></i> New product
+      <% end %>
+
+      <%= link_to orders_path, class: 'btn-main btn-block' do %>
+        <i class="glyphicon glyphicon-list-alt"></i> Orders (<%= pluralize Order.count, 'item' %>)
+      <% end %>
+
+      <%= link_to carts_path, class: 'btn-main btn-block' do %>
+        <i class="glyphicon glyphicon-qrcode"></i> Carts (<%= pluralize Cart.count, 'item' %>)
+      <% end %>
+
+      <%= link_to users_path, class: 'btn-main btn-block' do %>
+        <i class="glyphicon glyphicon-user"></i> Users (<%= pluralize User.count, 'item' %>)
+      <% end %>
+
+  </div>
+<% end %>
+
+
+

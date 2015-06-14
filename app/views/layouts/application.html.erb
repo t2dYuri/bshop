@@ -2,7 +2,7 @@
 <html>
   <head>
     <%= favicon_link_tag 'favicon.ico' %>
-    <title>BESHOP</title>
+    <title><%= yield(:title) %> | BESHOP</title>
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
     <%= csrf_meta_tags %>
@@ -15,7 +15,7 @@
   </span>
 
   <span id="cart_modal">
-    <%= render 'carts/cart_modal' if session[:cart_id].present? %>
+    <%= render 'carts/cart_modal' if cookies[:cart_id].present? %>
   </span>
 
   <div class="container-fluid">

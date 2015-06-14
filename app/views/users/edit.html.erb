@@ -1,0 +1,90 @@
+<% provide(:title, 'Editing user profile') %>
+
+<div class="modal fade reg-login-mod" id="reg-login-mod" tabindex="-1" role="dialog"
+     aria-labelledby="reg-login-modLabel" aria-hidden="true" data-keyboard="false" data-backdrop="static">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-body">
+        <%= link_to :back, class: 'pull-right' do %>
+          <i class="glyphicon glyphicon-off" title="Close"></i>
+        <% end %>
+
+        <h3 class="center">Editing profile of <%= @user.name %></h3>
+
+        <%= form_for(@user) do |f| %>
+          <%= render 'shared/error_messages', object: f.object %>
+
+          <%= f.label :name %>
+          <%= f.text_field :name, class: 'form-control',
+                           placeholder: 'New name' %>
+
+          <% if current_user.admin? %>
+            <%= f.label :email %>
+            <%= f.email_field :email, class: 'form-control', placeholder: 'new email' %>
+          <% end %>
+
+          <%= f.label :password %>
+          <div class="form-inline">
+            <%= f.password_field :password, class: 'form-control half-width',
+                               placeholder: 'New password' %>
+
+            <%= f.password_field :password_confirmation, class: 'form-control half-width pull-right',
+                               placeholder: 'Confirm new password' %>
+          </div>
+
+          <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+            <div class="panel">
+              <div class="panel-heading" role="tab" id="usrinfoHead">
+                <h3 class="panel-title">
+                  <a data-toggle="collapse" href="#usrinfoFade" aria-expanded="true" aria-controls="usrinfoFade">
+                    Additional user's information
+                  </a>
+                </h3>
+              </div>
+              <div id="usrinfoFade" class="panel-collapse collapse" role="tabpanel" aria-labelledby="usrinfoHead">
+                <div class="panel-body">
+
+                  <%= f.label :phone, 'Phone Number, example: +12 (034) 123-4567' %>
+                  <%= f.text_field :phone, class: 'form-control',
+                                   placeholder: 'Contact phone number, international format' %>
+
+                  <%= f.label :zip_code %>
+                  <%= f.text_field :zip_code, class: 'form-control',
+                                   placeholder: 'Enter your zip (postal) code' %>
+
+                  <%= f.label :country %>
+                  <%= f.text_field :country, class: 'form-control',
+                                   placeholder: 'Enter your country' %>
+
+                  <%= f.label :region %>
+                  <%= f.text_field :region, class: 'form-control',
+                                   placeholder: 'Enter your region (state)' %>
+
+                  <%= f.label :city %>
+                  <%= f.text_field :city, class: 'form-control',
+                                   placeholder: 'Enter your city' %>
+
+                  <%= f.label :address %>
+                  <%= f.text_area :address, class: 'form-control', rows: 4,
+                                  placeholder: 'Delivery address' %>
+
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="mod-foot">
+            <%= f.button class: 'btn-main' do %>
+              <i class="glyphicon glyphicon-ok"></i> Update profile
+            <% end %>
+
+            <%= link_to :back, class: 'btn-secondary pull-right' do %>
+              <i class="glyphicon glyphicon-repeat"></i> Cancel updating
+            <% end %>
+          </div>
+
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

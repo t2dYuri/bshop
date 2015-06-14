@@ -22,7 +22,7 @@
         <tr class="<%= cycle('line-even', 'line-odd') %>">
           <td><%= i+1 %></td>
           <td><%= item.product.title %></td>
-          <td>
+          <td class="pull-right">
             <%= form_for item do |f| %>
               <%= number_to_currency item.price %> &times;
               <%= f.number_field :quantity, in: 1...101, class: 'qty-field' %>

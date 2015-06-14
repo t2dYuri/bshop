@@ -54,9 +54,23 @@ h4 { margin: 5px }
   color: $act-font-color;
 }
 
+.half-width {
+  width: 49% !important
+}
+
 textarea { resize: vertical; }
 .center { text-align: center; }
 .bottom-line { margin-top: 10px; }
+
+.panel {
+  background: $element-odd-color;
+  margin-top: 20px;
+  border: 1px solid $reg-font-color;
+  .panel-title {
+    font-weight: bold;
+    text-align: center;
+  }
+}
 
 /* --- Links --- */
 a:link, a:visited {
@@ -95,10 +109,12 @@ a:link, a:visited {
 /* --- Modal window --- */
 .modal-content {
   background: $body-back-color;
+//  .mod-head { background: $element-odd-color; }
   .modal-body {
     background: $container-back-color;
     border-radius: 6px;
   }
+  .mod-foot { padding-top: 15px; }
 }
 
 /* --- Lists --- */
@@ -160,4 +176,9 @@ table {
       margin-left: 10px;
     }
   }
+}
+
+/* --- Admin Section --- */
+.adm-section {
+  margin-top: 30px;
 }

@@ -25,10 +25,14 @@
 </div>
 
 <div class="bottom-line center">
-  <%= link_to '', carts_path, class: 'back-but', title: 'Back to carts',
+  <%= link_to '', :back, class: 'back-but', title: 'Return',
               data: { toggle: 'tooltip', placement: 'top' } %>
+
   <%= link_to '', @cart, method: :delete, class: 'del-but', title: 'Delete cart',
               data: { confirm: 'You sure?', toggle: 'tooltip', placement: 'top' } %>
-  <%= link_to '', new_order_path, id: 'control-but', class: 'glyphicon glyphicon-play-circle',
-              title: 'Create order', data: { toggle: 'tooltip', placement: 'top' } %>
+
+  <% if cookies[:cart_id].present? && @cart == current_cart %>
+    <%= link_to '', new_order_path, id: 'control-but', class: 'glyphicon glyphicon-play-circle',
+                title: 'Create order', data: { toggle: 'tooltip', placement: 'top' } %>
+  <% end %>
 </div>

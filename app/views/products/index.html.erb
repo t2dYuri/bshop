@@ -1,28 +1,33 @@
-<h2>Products index</h2>
-<table>
-  <% @products.each do |product| %>
-    <tr class="<%= cycle('line-odd', 'line-even') %>">
-      <td><%= image_tag(product.image_url, class: 'img-list') %></td>
-      <td>
-        <span class="pull-left">ID: <%= product.id %></span>
-        <h4 class="heading-text center"><%= product.title %></h4>
-        <%= truncate(strip_tags(product.description), length: 200) %><br>
-        <div class="heading-text"><%= number_to_currency product.price %></div>
-      </td>
-      <td class="control-links">
-        <%= link_to '', product, class: 'show-but', title: 'Show',
-                    data: { toggle: 'tooltip', placement: 'top' } %><br>
-        <%= link_to '', edit_product_path(product), class: 'edit-but', title: 'Edit',
-                    data: { toggle: 'tooltip', placement: 'top' } %><br>
-        <%= link_to '', product, method: :delete, class: 'del-but', title: 'Destroy',
-                    data: { toggle: 'tooltip', placement: 'top' } %>
-      </td>
-    </tr>
-  <% end %>
-</table>
+<% provide(:title, 'All products') %>
+<div class="row">
+  <div class="col-md-3">
+    <%= render 'shared/admin_section' %>
+  </div>
 
-<div class="bottom-line">
-  <%= link_to new_product_path do %>
-    <i class="glyphicon glyphicon-plus"></i> Add new product
-  <% end %>
+  <div class="col-md-9">
+    <h2>Products index</h2>
+    <hr>
+    <table>
+      <% @products.each do |product| %>
+        <tr class="<%= cycle('line-odd', 'line-even') %>">
+          <td><%= image_tag(product.image_url, class: 'img-list') %></td>
+          <td>
+            <span class="pull-left">ID: <%= product.id %></span>
+            <h4 class="heading-text center"><%= product.title %></h4>
+            <%= truncate(strip_tags(product.description), length: 200) %><br>
+            <div class="heading-text"><%= number_to_currency product.price %></div>
+          </td>
+          <td class="control-links">
+            <%= link_to '', product, class: 'show-but', title: 'Show',
+                        data: { toggle: 'tooltip', placement: 'top' } %><br>
+            <%= link_to '', edit_product_path(product), class: 'edit-but', title: 'Edit',
+                        data: { toggle: 'tooltip', placement: 'top' } %><br>
+            <%= link_to '', product, method: :delete, class: 'del-but', title: 'Destroy',
+                        data: { toggle: 'tooltip', placement: 'top' } %>
+          </td>
+        </tr>
+      <% end %>
+    </table>
+    <hr>
+  </div>
 </div>

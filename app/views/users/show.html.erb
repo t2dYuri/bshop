@@ -1,0 +1,15 @@
+<% provide(:title, "#{@user.name}") %>
+<% if current_user.admin? && current_user?(@user) %>
+  <%= render 'shared/admin_section' %>
+<% else %>
+  <h2><%= @user.name %></h2>
+  <p><strong>Email: </strong><%= @user.email %></p>
+  <p><strong>Phone: </strong><%= number_to_phone @user.phone, area_code: true %></p>
+  <p><strong>Delivery address: </strong>
+    <%= @user.zip_code %>,
+    <%= @user.country %>,
+    <%= @user.region %>,
+    <%= @user.city %>,
+    <%= @user.address.html_safe if @user.address %>
+  </p>
+<% end %>

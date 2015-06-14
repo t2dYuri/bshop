@@ -3,19 +3,19 @@
 
   <div class="row">
     <div class="col-md-6">
-      <%= f.label :name %>
+      <%= f.label :name, "Receiver's full name *" %>
       <%= f.text_field :name, class: 'form-control',
                        placeholder: 'Enter your full name' %>
 
-      <%= f.label :email %>
+      <%= f.label :email, 'Email *' %>
       <%= f.email_field :email, class: 'form-control',
                        placeholder: 'Enter your contact email' %>
 
-      <%= f.label :email_confirmation %>
+      <%= f.label :email_confirmation, 'Email confirmation *' %>
       <%= f.email_field :email_confirmation, class: 'form-control',
                        placeholder: 'Please, confirm your email' %>
 
-      <%= f.label :phone, 'Phone Number, example: +12(034)123-4567' %>
+      <%= f.label :phone, 'Phone Number, example: +12(034)123-4567 *' %>
       <%= f.text_field :phone, class: 'form-control',
                        placeholder: 'Contact phone number, international format' %>
 
@@ -37,11 +37,11 @@
       <%= f.text_field :region, class: 'form-control',
                        placeholder: 'Enter your region (state)' %>
 
-      <%= f.label :city %>
+      <%= f.label :city, 'City *' %>
       <%= f.text_field :city, class: 'form-control',
                        placeholder: 'Enter your city' %>
 
-      <%= f.label :address %>
+      <%= f.label :address, 'Address *' %>
       <%= f.text_area :address, class: 'form-control', rows: 4,
                       placeholder: 'Enter delivery address for this order' %>
     </div>
@@ -49,7 +49,7 @@
 
   <div class="row">
     <div class="col-md-6 col-md-offset-3">
-      <%= f.label :pay_type, 'Payment type' %>
+      <%= f.label :pay_type, 'Payment type *' %>
       <%= f.select :pay_type, options_for_select(Order::PAYMENT_TYPES),
                    {prompt: 'Select a payment method'}, {class: 'form-control'} %>
 

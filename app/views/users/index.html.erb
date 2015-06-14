@@ -1,0 +1,41 @@
+<% provide(:title, 'All users') %>
+<div class="row">
+  <div class="col-md-3">
+    <%= render 'shared/admin_section' %>
+  </div>
+
+  <div class="col-md-9">
+    <h2>All users</h2>
+    <hr>
+    <table>
+      <% @users.each_with_index do |user, i| %>
+        <tr class="<%= cycle('line-even', 'line-odd') %>">
+          <td><%= i+1 %></td>
+          <td>ID: <%= user.id %></td>
+          <td>
+            <%= link_to user do %>
+              <%= user.name %>
+            <% end %>
+          </td>
+          <td><%= user.email %></td>
+          <td><%= number_to_phone user.phone, area_code: true %></td>
+          <td><%= user.country %></td>
+          <td><%= user.admin %></td>
+          <td class="control-links">
+            <%= link_to '', user, class: 'show-but', title: 'Show',
+                        data: { toggle: 'tooltip', placement: 'top' } %>
+
+            <%= link_to '', edit_user_path(user), class: 'edit-but', title: 'Edit',
+                        data: { toggle: 'tooltip', placement: 'top' } %>
+
+            <% if current_user.admin? && !current_user?(user) %>
+              <%= link_to '', user, method: :delete, class: 'del-but', title: 'Destroy',
+                          data: { confirm: 'Are you sure?', toggle: 'tooltip', placement: 'top' } %>
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+    </table>
+    <hr>
+  </div>
+</div>

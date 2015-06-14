@@ -1,27 +1,37 @@
-<h2>Orders index</h2>
-<hr>
-<table>
-  <% @orders.each_with_index do |order, i| %>
-    <tr class="<%= cycle('line-even', 'line-odd') %>">
-      <td><%= i+1 %></td>
-      <td>Order ID: <%= order.id %></td>
-      <td>
-        <%= link_to order do %>
-          <%= order.created_at.strftime '%Y.%m.%d - %H:%M:%S' %>
-        <% end %>
-      </td>
-      <td><%= order.email %></td>
-      <td><%= number_to_currency order.line_items.map(&:total_price).sum %></td>
-      <td><%= order.pay_type %></td>
-      <td class="control-links">
-        <%= link_to '', order, class: 'show-but', title: 'Show',
-                    data: { toggle: 'tooltip', placement: 'top' } %>
-        <%= link_to '', edit_order_path(order), class: 'edit-but', title: 'Edit',
-                    data: { toggle: 'tooltip', placement: 'top' } %>
-        <%= link_to '', order, method: :delete, class: 'del-but', title: 'Destroy',
-                    data: { confirm: 'Are you sure?', toggle: 'tooltip', placement: 'top' } %>
-      </td>
-    </tr>
-  <% end %>
-</table>
-<hr>
+<% provide(:title, 'All orders') %>
+<div class="row">
+  <div class="col-md-3">
+    <%= render 'shared/admin_section' %>
+  </div>
+
+  <div class="col-md-9">
+    <h2>Orders index</h2>
+    <hr>
+    <table>
+      <% @orders.each_with_index do |order, i| %>
+        <tr class="<%= cycle('line-even', 'line-odd') %>">
+          <td><%= i+1 %></td>
+          <td>Order ID: <%= order.id %></td>
+          <td>
+            <%= link_to order do %>
+              <%= order.created_at.strftime '%Y.%m.%d - %H:%M:%S' %>
+            <% end %>
+          </td>
+          <td><%= order.email %></td>
+          <td><%= number_to_currency order.line_items.map(&:total_price).sum %></td>
+          <td><%= order.pay_type %></td>
+          <td class="control-links">
+            <%= link_to '', order, class: 'show-but', title: 'Show',
+                        data: { toggle: 'tooltip', placement: 'top' } %>
+            <%= link_to '', edit_order_path(order), class: 'edit-but', title: 'Edit',
+                        data: { toggle: 'tooltip', placement: 'top' } %>
+            <%= link_to '', order, method: :delete, class: 'del-but', title: 'Destroy',
+                        data: { confirm: 'Are you sure?', toggle: 'tooltip', placement: 'top' } %>
+          </td>
+        </tr>
+      <% end %>
+    </table>
+    <hr>
+  </div>
+</div>
+

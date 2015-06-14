@@ -1,6 +1,7 @@
 class OrdersController < ApplicationController
   before_action :set_order, only: [:show, :edit, :update, :destroy]
   before_action :current_cart, only: [:new, :create]
+  before_action :admin_only, only: [:index, :show, :edit, :destroy]
 
   def index
     @orders = Order.all.includes(:line_items)
@@ -25,7 +26,7 @@ class OrdersController < ApplicationController
     @order.add_cart_line_items(current_cart)
     if @order.save
       current_cart.destroy
-      session[:cart_id] = nil
+      cookies.delete :cart_id
       OrderNotifier.received(@order).deliver_now
       redirect_to store_url, notice: 'Order created. Please, check your email'
     else

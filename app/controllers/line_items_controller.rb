@@ -4,9 +4,9 @@ class LineItemsController < ApplicationController
   # before_action :current_cart, only: [:create]
 
   def create
-    if session[:cart_id].nil?
+    if cookies[:cart_id].nil?
       cart = Cart.create
-      session[:cart_id] = cart.id
+      cookies[:cart_id] = { value: cart.id, expires: 1.week.from_now }
     end
     product = Product.find(params[:product_id])
     @line_item = current_cart.add_product(product.id, product.price)
@@ -48,11 +48,11 @@ class LineItemsController < ApplicationController
 
   def destroy
     @line_item.destroy
-    if session[:cart_id] != nil
+    if cookies[:cart_id] != nil
       respond_to do |format|
         if current_cart.line_items.empty?
           current_cart.destroy
-          session[:cart_id] = nil
+          cookies.delete :cart_id
           format.html { redirect_to carts_path flash[:info] = 'Cart is empty' }
           format.js { render 'destroy_last' }
         else

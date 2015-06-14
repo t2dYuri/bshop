@@ -49,6 +49,18 @@
   }
 }
 
+.btn-secondary, .btn-secondary:link, .btn-secondary:visited {
+  @extend .btn-main;
+  color: $reg-font-color;
+  background: $element-even-color none;
+  border: 1px solid $reg-font-color;
+  &:hover, &:active, &:focus {
+    color: $act-font-color;
+    background: $element-odd-color none;
+    border: 1px solid $reg-font-color;
+  }
+}
+
 #control-but {
   margin: 0 0 0 3px;
   font-size: larger;

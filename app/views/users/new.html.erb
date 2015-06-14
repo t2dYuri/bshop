@@ -1,0 +1,47 @@
+<% provide(:title, 'User registration') %>
+
+<div class="modal fade reg-login-mod" id="reg-login-mod" tabindex="-1" role="dialog"
+     aria-labelledby="reg-login-modLabel" aria-hidden="true" data-keyboard="false" data-backdrop="static">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-body">
+        <%= link_to store_path, class: 'pull-right' do %>
+          <i class="glyphicon glyphicon-off" title="Close"></i>
+        <% end %>
+
+        <h3 class="center">Registration</h3>
+
+        <%= form_for(@user) do |f| %>
+          <%= render 'shared/error_messages', object: f.object %>
+
+          <%= f.label :name %>
+          <%= f.text_field :name, class: 'form-control',
+                           placeholder: 'Enter your full name' %>
+
+          <%= f.label :email %>
+          <%= f.email_field :email, class: 'form-control',
+                            placeholder: 'Enter your contact email' %>
+
+          <%= f.label :password %>
+          <%= f.password_field :password, class: 'form-control',
+                               placeholder: 'Enter your password' %>
+
+          <%= f.label :password_confirmation %>
+          <%= f.password_field :password_confirmation, class: 'form-control',
+                               placeholder: 'Confirm your password' %>
+
+          <div class="mod-foot">
+            <%= f.button class: 'btn-main' do %>
+              <i class="glyphicon glyphicon-ok"></i> Continue registration
+            <% end %>
+
+            <%= link_to login_path, class: 'btn-secondary pull-right' do %>
+              <i class="glyphicon glyphicon-repeat"></i> I'm already registered
+            <% end %>
+          </div>
+
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
